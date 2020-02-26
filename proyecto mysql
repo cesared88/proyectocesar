@@ -1,0 +1,48 @@
+Para conectarme a mysql por GcLOUD:
+gcloud sql connect proyectoplatzi --user=root
+
+-- Creacion de base de datos
+CREATEDATABASE platzi_operation;
+-- Creacion de base de datos usando un condicional
+CREATEDATABASEIFNOTEXISTS platzi_operation;
+-- Mostar Warnings
+SHOWwarnings;
+-- Mostar bases de datos
+SHOWDATABASES
+-- Utilizar una base de datos
+USE platzi_operation;
+-- Mostrar tablas
+SHOWTABLES;
+-- Como saber que base de datos estoy usando, RTA:
+SELECTDATABASE();
+-- Borrar tabla
+DROPTABLE books
+-- Mostar tablas
+SHOWTABLES;
+-- Describe los campos de la base de datos
+DESCRIBE books
+DESCauthors
+-- Mostar todo el esquema de la tabla (Incluyendo los comentarios)
+SHOWFULLCOLUMNSFROM books;
+
+-- CREACION DEL PROYECTO [LIBRERIA]
+
+-- Buena practica: Usar el nombre de la tabla en plural
+CREATETABLEIFNOTEXISTS books(
+  book_id INTUNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  author_id INTUNSIGNED ,
+  title VARCHAR(100) NOTNULL,
+   yearINTUNSIGNEDNOTNULLDEFAULT1900,
+  languageVARCHAR(2) NOTNULLDEFAULT'es'COMMENT'ISO 639-1 Lenguage',
+  cover_url VARCHAR(500),
+  price DOUBLE(6,2) NOTNULLDEFAULT10.0,
+  sellable TINYINT(1) DEFAULT1,
+  copies INTNOTNULLDEFAULT1,
+  description TEXT
+);
+
+CREATETABLEIFNOTEXISTSauthors (
+  author_id INTUNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  nameVARCHAR(100) NOTNULL,
+  nationality VARCHAR(3)
+);
